@@ -17,10 +17,10 @@ export function getDecks(decks) {
     }
 }
 
-export function addCardTodeck(card, deckTitle) {
+export function addQuetionToDeck(card, deckKey) {
     return {
         type: ADD_QUESTION,
         card,
-        deckTitle
+        deckKey
     }
 }
