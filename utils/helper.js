@@ -2,7 +2,7 @@ import { Notifications } from 'expo'
 import * as Permissions from "expo-permissions";
 import { AsyncStorage } from "react-native";
 
-const NOTIFICATION_KEY = "FlashCards:notifications";
+const NOTIFICATION_KEY = "Mobile-flashcards:notifications";
 export function generateKey  () {
     return  Date.now()
 }
@@ -15,8 +15,8 @@ export function clearLocalNotification () {
   
   function createNotification () {
     return {
-      title: 'Cards',
-      body: "You did not read any card today :(",
+      title: "It's quiz time",
+      body: "👋🏿 don't forget to take your quiz",
       ios: {
         sound: true,
       },
@@ -36,8 +36,7 @@ export function clearLocalNotification () {
       .then((data) => { 
         if (data === null || data === true) {
           Permissions.askAsync(Permissions.NOTIFICATIONS)
-            .then(({ status }) => {
-                
+            .then(({ status }) => {  
               if (status === 'granted') {
                 Notifications.cancelAllScheduledNotificationsAsync()
   

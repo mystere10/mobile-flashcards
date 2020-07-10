@@ -1,26 +1,24 @@
 import React,{Component} from "react";
-import { View,Text, StyleSheet, FlatList } from "react-native";
 import { connect } from "react-redux";
-import DeckItem from "./DeckItem";  
+import { View, StyleSheet, FlatList } from "react-native";
+import DeckCard from "./DeckCard";  
 
 class ListDecks extends Component{
 
     static navigationOptions = {
         title: 'Decks',
-        fontSize: 100
     };
 
     render(){
+        const { deckIds, navigation } = this.props
 
-        const { deckIds } = this.props
-        
         return <View style={styles.container}>
                 <FlatList
                     data={deckIds}
                     renderItem={({ item }) => (
-                    <DeckItem
+                    <DeckCard
                         id={item}
-                        navigator={this.props.navigation}
+                        navigator={navigation}
                     />
                     )}
                     keyExtractor={item => item}
@@ -32,17 +30,14 @@ class ListDecks extends Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 20,
-    },
-    title: {
-        fontSize: 32,
-    },
+        marginTop: 10
+    }
   });
 
 function mapStateToProps(decks){
   
     return {
-        deckIds:Object.keys(decks)
+        deckIds: Object.keys(decks)
     }
 }
 export default connect(mapStateToProps)(ListDecks)

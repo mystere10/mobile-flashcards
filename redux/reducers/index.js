@@ -20,9 +20,9 @@ function decks (state = {}, action) {
                 ...state,
                 [action.deckKey]:{
                     ...state[action.deckKey],
-                    questions:state[action.deckKey].questions.concat({
-                        question:action.card.question,
-                        answer:action.card.answer
+                    questions: state[action.deckKey].questions.concat({
+                        question: action.card.question,
+                        answer: action.card.answer
                     })
                 }
             }
