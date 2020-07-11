@@ -31,7 +31,7 @@ class AddDeck extends Component {
             questions: []
         }
         dispatch(addDeck(newDeck, deckKey))
-        __AddDeck({ title, questions: [] }, deckKey)
+        __AddDeck( newDeck, deckKey)
         this.toViewDeck(deckKey)
         this.setState(() => ({
             title: ''
