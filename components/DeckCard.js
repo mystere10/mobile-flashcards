@@ -1,21 +1,18 @@
 import React, {Component} from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-import { gray, purple } from "../utils/colors";
+import { purple } from "../utils/colors";
 
-
-class DeckItem extends Component{
-
-    handleDeck = () => {
-        this.props.navigator.push("DisplayDeck", {deckId:this.props.id, deckTitle:this.props.deck.title})
-    }
-    render(){
-        const { deck } = this.props
-        return <TouchableOpacity style={styles.deck} onPress={this.handleDeck}>
-                    <Text style={styles.title}>{deck.title}</Text>
-                    <Text>{deck.questions.length} Card(s) </Text>
-                </TouchableOpacity>
-    }
+const handleDeck = (props) => {
+    props.navigator.push("DisplayDeck", {deckId: props.id, deckTitle: props.deck.title})
+}
+function DeckCard(props) {
+    const {deck} = props
+    return <TouchableOpacity style={styles.deck} onPress={() => handleDeck(props)}>
+                <Text style={styles.title}>{deck.title}</Text>
+                <Text>{deck.questions.length} Card(s) </Text>
+            </TouchableOpacity>
+    
 }
 
 const styles = StyleSheet.create({
@@ -39,4 +36,4 @@ function mapStateToProps(decks, { id }){
         deck: decks[id]
     }
 }
-export default connect(mapStateToProps)(DeckItem)
+export default connect(mapStateToProps)(DeckCard)

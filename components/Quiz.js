@@ -114,7 +114,7 @@ class Quiz extends Component {
         if(deck !== null) {
             display = <View style={styles.container}>
                         {deck.questions.length === 0 &&
-                            (<Text>Please add a card to take quiz</Text>)
+                            <Text style={styles.noCard}>Please add a card to take quiz</Text>
                         }
 
                         {currentQuestion > numberOfQuestions &&
@@ -187,6 +187,11 @@ const styles = StyleSheet.create({
         marginVertical: 4,
         marginHorizontal: 6,
         borderRadius: 2,
+    },
+    noCard: {
+        fontSize: 20,
+        padding: 40,
+        width: 500
     },
     displayBox: {
         padding: 20,
