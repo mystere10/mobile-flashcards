@@ -10,7 +10,6 @@ This is a react native app that allows a user to create decks and place cards in
 ## What to know
 
 - This project was tested on iPhone 7
-- When registering cards make sure in the answer field use only `yes` or `no` as answers as there is not input field to check what the user typed. In brief the quiz will be multiple choice. You provide a statement then the user evaluate it to yes or no, if the user says yes and it matches the answer to that question will be correct otherwise it will be no.
 
 ## List of functions used to save data in the local storage
 

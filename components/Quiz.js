@@ -28,14 +28,11 @@ class Quiz extends Component {
     }
 
     componentDidMount() {
-
         const { decks, navigation } = this.props
-
         let deckId = navigation.getParam("deckId")
         let deck = decks[deckId]
 
         let numberOfQuestions = deck.questions.length
-
         this.setState({
             deck: deck,
             numberOfQuestions: numberOfQuestions,
@@ -44,46 +41,24 @@ class Quiz extends Component {
     }
 
 
-    handleCorrectAnswer = (answer) => {
-        const {deck, currentQuestion} = this.state
-        if(answer === deck.questions[currentQuestion - 1].answer){
-            this.setState((prevState) => ({
-                correctAnswer: prevState.correctAnswer + 1,
-                currentQuestion: prevState.currentQuestion + 1,
-                showAnswer: false,
-                width: new Animated.Value(0),
-                height: new Animated.Value(0)
-            }))
-        }else{
-            this.setState((prevState) => ({
-                incorrectAnswer: prevState.correctAnswer + 1,
-                currentQuestion: prevState.currentQuestion + 1,
-                showAnswer: false,
-                width: new Animated.Value(0),
-                height: new Animated.Value(0)
-            }))
-        }
+    handleCorrectAnswer = () => {
+        this.setState((prevState) => ({
+            correctAnswer: prevState.correctAnswer + 1,
+            currentQuestion: prevState.currentQuestion + 1,
+            showAnswer: false,
+            width: new Animated.Value(0),
+            height: new Animated.Value(0)
+        }))
     }
 
-    handleIncorrectAnswer = (answer) => {
-        const {deck, currentQuestion} = this.state
-        if(answer === deck.questions[currentQuestion - 1].answer){
-            this.setState((prevState) => ({
-                correctAnswer: prevState.correctAnswer + 1,
-                currentQuestion: prevState.currentQuestion + 1,
-                showAnswer: false,
-                width: new Animated.Value(0),
-                height: new Animated.Value(0)
-            }))
-        }else{
-            this.setState((prevState) => ({
-                incorrectAnswer: prevState.incorrectAnswer,
-                currentQuestion: prevState.currentQuestion + 1,
-                showAnswer: false,
-                width: new Animated.Value(0),
-                height: new Animated.Value(0)
-            }))
-        }
+    handleIncorrectAnswer = () => {
+        this.setState((prevState) => ({
+            correctAnswer: prevState.incorrectAnswer + 1,
+            currentQuestion: prevState.currentQuestion + 1,
+            showAnswer: false,
+            width: new Animated.Value(0),
+            height: new Animated.Value(0)
+        }))
     }
 
     handleShowAnswer = () => {
@@ -151,14 +126,14 @@ class Quiz extends Component {
 
                                 <TouchableOpacity
                                     style={styles.button}
-                                    onPress={() => this.handleCorrectAnswer('yes')}
+                                    onPress={this.handleCorrectAnswer}
                                 >
                                 <Text style={{color: white}}>Correct</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
                                     style={styles.button}
-                                    onPress={() => this.handleIncorrectAnswer('no')}
+                                    onPress={this.handleIncorrectAnswer}
                                 >
                                 <Text style={{color: white}}>Incorrect</Text>
                                 </TouchableOpacity>
